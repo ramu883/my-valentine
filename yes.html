@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yay! ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #ffd1dc, #ff6f91);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #8b0033;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Floating hearts */
+    .hearts span {
+      position: absolute;
+      bottom: -40px;
+      font-size: 22px;
+      animation: float 9s linear infinite;
+      opacity: 0.8;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.25));
+    }
+    @keyframes float {
+      to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      padding: 36px 28px 32px;
+      border-radius: 26px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+      width: min(92vw, 420px);
+      animation: popIn 0.9s cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes popIn {
+      from { transform: translateY(20px) scale(0.9); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 34px;
+      margin: 8px 0 10px;
+    }
+    .subtitle {
+      font-size: 16px;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .photo-wrap {
+      margin: 14px auto 10px;
+      width: 220px;
+      aspect-ratio: 1 / 1;
+      border-radius: 24px;
+      padding: 6px;
+      background: linear-gradient(135deg, #ff4d6d, #ffd166);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+      animation: glow 2.2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 6px rgba(255,77,109,0.5)); }
+      to   { filter: drop-shadow(0 0 14px rgba(255,209,102,0.9)); }
+    }
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+      background: #fff;
+    }
+
+    .message {
+      font-size: 18px;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .confetti i {
+      position: fixed;
+      top: -10px;
+      width: 8px; height: 12px;
+      background: white;
+      animation: fall 1.4s linear forwards;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <div class="hearts" id="hearts"></div>
+
+  <div class="card">
+    <h1>❤️ You said YES! ❤️</h1>
+    <div class="subtitle">This just made my day ✨</div>
+
+    <div class="photo-wrap">
+      <img src="photo.JPG" alt="Our picture">
+    </div>
+
+    <div class="message">
+      Thank you for being my Valentine 💕<br/>
+      Here’s to more smiles, silly jokes, and sweet moments together 😊
+    </div>
+  </div>
+
+  <script>
+    // Floating hearts
+    const hearts = document.getElementById("hearts");
+    setInterval(() => {
+      const s = document.createElement("span");
+      s.textContent = "💖";
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.animationDuration = 6 + Math.random() * 6 + "s";
+      hearts.appendChild(s);
+      setTimeout(() => s.remove(), 12000);
+    }, 500);
+
+    // Confetti on load
+    for (let i = 0; i < 80; i++) {
+      const c = document.createElement("i");
+      c.className = "confetti";
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.background = ["#ff4d6d", "#ffd166", "#06d6a0", "#fff"][Math.floor(Math.random()*4)];
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 1400);
+    }
+  </script>
+</body>
+</html>
